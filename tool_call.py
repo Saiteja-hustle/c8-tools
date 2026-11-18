@@ -32,24 +32,29 @@ def ask_model(messages, tools=None):
 # ---------- YOUR SERVER (yours to write) ----------
 # python tool_call.py                      asks the question below
 # python tool_call.py "What is an API?"    asks your own
-question = " ".join(sys.argv[1:]) or "When is Lecture 12 of 100xEngineers Cohort 8, and what is it about?"
+question = " ".join(sys.argv[1:]) or "Which tools do we use in the seventh class?"
 messages = [{"role": "user", "content": question}]
 
 # Step 2. The card: fill in the two empty strings.
 card = {"type": "function", "function": {
     "name": "get_lecture",
-    "description": "",                                                    # Use it when
+    "description": "Use this when the user asks about a specific lecture in the 100xEngineers Cohort 8 curriculum — its date, title, type, or tools used.",                                                    # Use it when
     "parameters": {"type": "object",
                    "properties": {"number": {"type": "integer",
-                                             "description": ""}},         # It needs
+                                             "description": "The lecture number, from 1 to 19."}},         # It needs
                    "required": ["number"]},
 }}
+        
+# Step 2: send the card too
+reply = ask_model(messages, [card])
 
-reply = ask_model(messages)                 # Step 2: send the card too
-print(json.dumps(reply, indent=2, ensure_ascii=False))
+while reply.get("tool_calls"):
+    call = reply["tool_calls"][0]
+    args = json.loads(call["function"]["arguments"])
+    print("The model asked for: get_lecture", args)
+    result = get_lecture(**args)
+    messages.append(reply)
+    messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result)})
+    reply = ask_model(messages, [card])
 
-# Step 3. Run the request the model wrote.
-
-# Step 4. Hand the result back to the model and print its answer.
-
-# Step 5. Turn steps 3 and 4 into a loop.
+print("\n" + reply["content"])  

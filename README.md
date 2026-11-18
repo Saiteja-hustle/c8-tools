@@ -252,3 +252,11 @@ Once you're done, submit it on the LMS. We go through them in the office hour.
 | `fastmcp list` on the deployed address asks you to sign in | Add `--auth none` to the command, and check Authentication is off on the Gateway page |
 
 Notes for this lecture: https://100x-curriculum.vercel.app/c8/module-2/lecture-12-building-with-tool-calling-and-mcp/notes
+
+| Question | Should it ask for the tool? | Did it? |
+|---|---|---|
+| When is Lecture 12 of 100xEngineers Cohort 8, and what is it about? | Yes | Yes |
+| Which tools do we use in the seventh class? | Yes | Yes |
+| What is an API? | No | No |
+| Is session ten a combined one or separate? | Yes | Yes |
+| In lecture 3 of Harvard CS50, which language is taught? | No | Yes — known gap: card still fires on "lecture 3" from a different course even after naming 100xEngineers Cohort 8 in the description |
