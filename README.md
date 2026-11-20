@@ -226,11 +226,16 @@ Then open **ChatMCP** on your server's Gateway page and ask it about Lecture 12.
 
 ## Now your own data
 
-Do it once more with data you care about: your own Google Sheet, a CSV file, a Supabase table, or an API from this course.
+Own-data tools (CursorClip AEO tracking sheet) built and deployed at: https://github.com/Saiteja-hustle/aeo-signalux-mcp
+Deployed address: https://concerned-white-bat.fastmcp.app/mcp
 
-1. Write your own function next to `get_lecture`, in both files.
-2. Write its card, and five questions of your own for the table in step 6.
-3. Push, and call your new tool at the deployed address.
+| Question | Should it ask for the tool? | Did it? |
+|---|---|---|
+| What are my pending priority tasks? | Yes | Yes — `get_priority_tasks`, correct |
+| How is the screen studio alternative keyword doing? | Yes | Yes — `get_keyword`, correct |
+| What's our overall ranking and search volume across keywords? | Yes | Yes — `get_overall`, correct |
+| What's the capital of France? | No | No — answered directly, no tool called |
+| What's the ranking for "best video editor for mac"? | No (not a tracked keyword) | Yes — wrongly called `get_overall` with a bad argument, crashed (known gap) |
 
 ## Submit it
 
